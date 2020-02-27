@@ -11,7 +11,11 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <video style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%;" class="" autoplay muted loop>
+  <video style="position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;" class="" autoplay muted loop>
     <source src="hero.mp4" type="video/mp4">
     </video>
   <nav class="light-blue lighten-1" role="navigation">
@@ -23,7 +27,7 @@
 
       <ul id="nav-mobile" class="sidenav">
         <li><a href="index.html">Anime</a></li>
-        <li><a href="mangalist.html">Manga</a></li>
+        <li class="active"><a href="mangalist.html">Manga</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
@@ -31,13 +35,14 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <!-- <h1 class="header center orange-text">Starter Template</h1> -->
+      <!-- <h1 class="header center orange-text">UbiAnime List</h1> -->
       <div class="row center">
-        <h5 style="color:white; position: sticky;" class="header col s12 light">Search your favourite Anime here</h5>
+        <h5 style="position: sticky;color:white" class="header col s12 light">Search your favourite Manga here</h5>
         <input class="input-field" id="key" type="text" />
       </div>
       <div class="row center">
         <button id="searchbtn" class="btn-large waves-effect waves-light orange" type="button" onclick="search();">Search</button>
+        <!-- <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a> -->
       </div>
       <br><br>
 
@@ -50,7 +55,7 @@
 
       <!--   Icon Section   -->
       <div class="row">
-        <div id="title"></div>
+        <div id="title">
       </div>
 
     </div>
@@ -58,8 +63,8 @@
   </div>
 
   <footer class="page-footer orange">
-    <!-- <div class="container">
-      <div class="row">
+    <div class="container">
+      <!-- <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">Company Bio</h5>
           <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
@@ -98,18 +103,20 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+
   <script>
     function search(){
         var key = document.getElementById("key").value;
-        $.getJSON( "https://api.jikan.moe/v3/search/anime?q="+key, function( data ) {
+        $.getJSON( "https://api.jikan.moe/v3/search/manga?q="+key, function( data ) {
             for(let i=0; i<data.results.length;i++){
-                $("#title").append('<div style="width:100%" class="col s12 m7"><h3 style="color:white;position:sticky" class="header">'+data.results[i].title+'</h3><div class="card horizontal"><div class="card-image"><img src="'+data.results[i].image_url+'"></div><div class="card-stacked"><div class="card-content"><p>'+data.results[i].synopsis+'</p></div><div class="card-action"><a target="_blank" href="'+data.results[i].url+'">View More...</a></div></div></div></div>');
+                $("#title").append('<div style="width:100%;position:sticky" class="col s12 m7"><h3 style="color:white" class="header">'+data.results[i].title+'</h3><div class="card horizontal"><div class="card-image"><img src="'+data.results[i].image_url+'"></div><div class="card-stacked"><div class="card-content"><p>'+data.results[i].synopsis+'</p></div><div class="card-action"><a target="_blank" href="'+data.results[i].url+'">View More...</a></div></div></div></div>');
                
             }
         });
         $("#title").empty();
     }
     </script>
+
 
   </body>
 </html>
