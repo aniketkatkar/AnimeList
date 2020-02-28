@@ -122,7 +122,7 @@
         var key = document.getElementById("key").value;
         $.getJSON( "https://api.jikan.moe/v3/search/anime?q="+key, function( data ) {
             for(let i=0; i<data.results.length;i++){
-                $("#title").append('<div style="width:100%" class="col s12 m7"><h3 style="color:white;position:sticky" class="header">'+data.results[i].title+'</h3><div class="card horizontal"><div class="card-image"><img src="'+data.results[i].image_url+'"></div><div class="card-stacked"><div class="card-content"><p>'+data.results[i].synopsis+'</p></div><div class="card-action"><a target="_blank" href="'+data.results[i].url+'">View More...</a></div></div></div></div>');
+                $("#title").append('<div style="width:100%" class="col s12 m7"><h3 style="color:white;position:sticky" class="header">'+data.results[i].title+'</h3><div class="card horizontal"><div class="card-image"><img src="'+data.results[i].image_url+'"></div><div class="card-stacked"><div class="card-content"><p><b>Synopsis : </b><br>'+data.results[i].synopsis+'<br><br><b>Type : </b>'+data.results[i].type+'<br><br><b>Episodes : </b>'+data.results[i].episodes+'<br><br><b>MAL Score : </b>'+data.results[i].score+'</p></div><div class="card-action"><a target="_blank" href="'+data.results[i].url+'">View More...</a></div></div></div></div>');
                
             }
         });

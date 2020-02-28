@@ -99,7 +99,7 @@
     function search(){
         $.getJSON( "https://api.jikan.moe/v3/top/manga", function( data ) {
             for(let i=0; i<data.top.length;i++){
-                $("#title").append('<div style="width:100%;position:sticky" class="col s12 m7"><h3 style="color:white" class="header">'+data.top[i].title+'</h3><div class="card horizontal"><div class="card-image"><img src="'+data.top[i].image_url+'"></div><div class="card-stacked"><div class="card-content"><p>MAL Score : '+data.top[i].score+'</p></div><div class="card-action"><a target="_blank" href="'+data.top[i].url+'">View More...</a></div></div></div></div>');
+                $("#title").append('<div style="width:100%;position:sticky" class="col s12 m7"><h3 style="color:white" class="header">'+data.top[i].title+'</h3><div class="card horizontal"><div class="card-image"><img src="'+data.top[i].image_url+'"></div><div class="card-stacked"><div class="card-content"><p><b>Rank : </b>'+data.top[i].rank+'<br><br><b>MAL Score : </b>'+data.top[i].score+'<br><br><b>Type : </b>'+data.top[i].type+'<br><br><b>Volumes : </b>'+data.top[i].volumes+'</p></div><div class="card-action"><a target="_blank" href="'+data.top[i].url+'">View More...</a></div></div></div></div>');
                
             }
         });
