@@ -19,15 +19,28 @@
     <source src="hero.mp4" type="video/mp4">
     </video>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">AnimeList</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">AnimeList</a>
+      <!-- Dropdown Structure -->
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="top50anime.html">Anime</a></li>
+        <li><a href="top50manga.html">Manga</a></li>
+        <li><a href="top50character.html">Character</a></li>
+      </ul>
+      <ul id="dropdown11" class="dropdown-content">
+        <li><a href="top50anime.html">Anime</a></li>
+        <li><a href="top50manga.html">Manga</a></li>
+        <li><a href="top50character.html">Character</a></li>
+      </ul>
       <ul class="right hide-on-med-and-down">
         <li><a href="index.html">Anime</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Top 50<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href="mangalist.html">Manga</a></li>
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
         <li><a href="index.html">Anime</a></li>
-        <li class="active"><a href="mangalist.html">Manga</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown11">Top 50<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="mangalist.html">Manga</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
@@ -62,7 +75,7 @@
     <br><br>
   </div>
 
-  <footer class="page-footer orange">
+  <footer class="page-footer transparent">
     <div class="container">
       <!-- <div class="row">
         <div class="col l6 s12">
@@ -104,6 +117,11 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
 
+  <script>
+    $( document ).ready(function() {
+      $(".dropdown-trigger").dropdown();
+});
+  </script>
   <script>
     function search(){
         var key = document.getElementById("key").value;

@@ -10,8 +10,12 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-<body>
-  <video style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%;" class="" autoplay muted loop>
+<body onload="search()">
+  <video style="position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;" class="" autoplay muted loop>
     <source src="hero.mp4" type="video/mp4">
     </video>
   <nav class="light-blue lighten-1" role="navigation">
@@ -43,13 +47,14 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <!-- <h1 class="header center orange-text">Starter Template</h1> -->
+      <!-- <h1 class="header center orange-text">UbiAnime List</h1> -->
       <div class="row center">
-        <h5 style="color:white; position: sticky;" class="header col s12 light">Search your favourite Anime here</h5>
-        <input class="input-field" id="key" type="text" />
+        <h5 style="position: sticky;color:white" class="header col s12 light">Top 50 Characters of all time</h5>
+        <!-- <input class="input-field" id="key" type="text" /> -->
       </div>
       <div class="row center">
-        <button id="searchbtn" class="btn-large waves-effect waves-light orange" type="button" onclick="search();">Search</button>
+        <!-- <button id="searchbtn" class="btn-large waves-effect waves-light orange" type="button" onclick="search();">Search</button> -->
+        <!-- <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a> -->
       </div>
       <br><br>
 
@@ -62,7 +67,7 @@
 
       <!--   Icon Section   -->
       <div class="row">
-        <div id="title"></div>
+        <div id="title">
       </div>
 
     </div>
@@ -70,34 +75,7 @@
   </div>
 
   <footer class="page-footer transparent">
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div> -->
+    <div class="container">
     <div class="footer-copyright">
       <div class="container">
       Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
@@ -116,19 +94,19 @@
       $(".dropdown-trigger").dropdown();
 });
   </script>
-  
+
   <script>
     function search(){
-        var key = document.getElementById("key").value;
-        $.getJSON( "https://api.jikan.moe/v3/search/anime?q="+key, function( data ) {
-            for(let i=0; i<data.results.length;i++){
-                $("#title").append('<div style="width:100%" class="col s12 m7"><h3 style="color:white;position:sticky" class="header">'+data.results[i].title+'</h3><div class="card horizontal"><div class="card-image"><img src="'+data.results[i].image_url+'"></div><div class="card-stacked"><div class="card-content"><p>'+data.results[i].synopsis+'</p></div><div class="card-action"><a target="_blank" href="'+data.results[i].url+'">View More...</a></div></div></div></div>');
+        $.getJSON( "https://api.jikan.moe/v3/top/characters", function( data ) {
+            for(let i=0; i<data.top.length;i++){
+                $("#title").append('<div style="width:100%;position:sticky" class="col s12 m7"><h3 style="color:white" class="header">'+data.top[i].title+'</h3><div class="card horizontal"><div class="card-image"><img src="'+data.top[i].image_url+'"></div><div class="card-stacked"><div class="card-content"><p>Rank : '+data.top[i].rank+'</p></div><div class="card-action"><a target="_blank" href="'+data.top[i].url+'">View More...</a></div></div></div></div>');
                
             }
         });
         $("#title").empty();
     }
     </script>
+
 
   </body>
 </html>
