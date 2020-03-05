@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>AnimeList</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
+
 <body onload="search()">
   <video style="position: fixed;
   right: 0;
@@ -17,7 +19,7 @@
   min-width: 100%;
   min-height: 100%;" class="" autoplay muted loop>
     <source src="hero.mp4" type="video/mp4">
-    </video>
+  </video>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">AnimeList</a>
       <ul id="dropdown1" class="dropdown-content">
@@ -32,13 +34,15 @@
       </ul>
       <ul class="right hide-on-med-and-down">
         <li><a href="index.html">Anime</a></li>
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Top 50<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Top 50<i
+              class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href="mangalist.html">Manga</a></li>
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
         <li><a href="index.html">Anime</a></li>
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown11">Top 50<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown11">Top 50<i
+              class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href="mangalist.html">Manga</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -68,45 +72,62 @@
       <!--   Icon Section   -->
       <div class="row">
         <div id="title">
+        </div>
+
       </div>
-
+      <br><br>
     </div>
-    <br><br>
-  </div>
 
-  <footer class="page-footer transparent">
-    <div class="container">
-    <div class="footer-copyright">
+    <footer class="page-footer transparent">
       <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
+        <div class="footer-copyright">
+          <div class="container">
+            Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+          </div>
+        </div>
+    </footer>
 
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
 
-  <script>
-    $( document ).ready(function() {
-      $(".dropdown-trigger").dropdown();
-});
-  </script>
+    <script>
+      $(document).ready(function () {
+        $(".dropdown-trigger").dropdown();
+      });
+    </script>
 
-  <script>
-    function search(){
-        $.getJSON( "https://api.jikan.moe/v3/top/characters", function( data ) {
-            for(let i=0; i<data.top.length;i++){
-                $("#title").append('<div style="width:100%;position:sticky" class="col s12 m7"><h3 style="color:white" class="header">'+data.top[i].title+'</h3><div class="card horizontal"><div class="card-image"><img src="'+data.top[i].image_url+'"></div><div class="card-stacked"><div class="card-content"><p><b>Rank : </b>'+data.top[i].rank+'<br><br><b>Animeography: </b><br>Type : '+data.top[i].animeography[i].type+'<br>Anime Name : '+data.top[i].animeography[i].name+'<br><a href="'+data.top[i].animeography[i].url+'">View More...</a><br><br><b>Mangaography:</b><br>Type : '+data.top[i].mangaography[i].type+'<br>Manga Name : '+data.top[i].mangaography[i].name+'<br><a href="'+data.top[i].mangaography[i].url+'">View More...</a></p></div><div class="card-action"><a target="_blank" href="'+data.top[i].url+'">View More...</a></div></div></div></div>');
-               
+    <script>
+      function search() {
+        $.getJSON("https://api.jikan.moe/v3/top/characters", function (data) {
+          console.log(data);
+
+          // '<br>Type : ' + data.top[i].mangaography[i].type + '<br>Manga Name : ' + data.top[i].mangaography[i].name + '<br><a href="' + data.top[i].mangaography[i].url + '">View More...</a></p></div>
+
+
+          for (let i = 0; i < data.top.length; i++) {
+
+            let animeography = '';
+            for (let a = 0; a < data.top[i].animeography.length; a++) {
+              animeography = animeography + ' <a href="' + data.top[i].animeography[a].url + '">' + data.top[i].animeography[a].name + '</a> |';
             }
+
+            let mangaography = '';
+            for (let m = 0; m < data.top[i].mangaography.length; m++) {
+              mangaography = mangaography + ' <a href="' + data.top[i].mangaography[m].url + '">' + data.top[i].mangaography[m].name + '</a> |';
+            }
+
+            $("#title").append('<div style="width:100%;position:sticky" class="col s12 m7"><h3 style="color:white" class="header">' + data.top[i].title + '</h3><div class="card horizontal"><div class="card-image"><img src="' + data.top[i].image_url + '"></div><div class="card-stacked"><div class="card-content"><p><b>Rank : </b>' + data.top[i].rank + '<br><br><b>Animeography:</b><br>Name : ' + animeography + '<br><br><b>Mangaography:</b><br>Name : ' + mangaography + '<br><br></div><div class="card-action"><a target="_blank" href="' + data.top[i].url + '">View More...</a></div></div></div></div>');
+
+          }
         });
         $("#title").empty();
-    }
+      }
     </script>
 
 
-  </body>
+</body>
+
 </html>
